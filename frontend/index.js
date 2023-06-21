@@ -37,16 +37,16 @@ function fetchPaginatedData(page, limit) {
 function displayPagination(previousPage, nextPage, totalPage) {
     const paginationButtons = document.getElementById("paginationButtons");
     paginationButtons.innerHTML = "";
-    const currentPage = ((Number(nextPage||(Number(previousPage)+2))+Number(previousPage||0))/2)
+    const currentPage = ((Number(nextPage || (Number(previousPage) + 2)) + Number(previousPage || 0)) / 2)
     const totalPageDisplay = document.getElementById("pc");
     totalPageDisplay.innerHTML = `<h6>Page ${currentPage} of ${totalPage}</h6>`;
     const totalDocDisplay = document.getElementById("tDoc");
     totalDocDisplay.innerHTML = `<h6>Total Page : ${totalPage}</h6>`;
-    
+
     if (previousPage) {
         const previousButton = createPaginationButton(previousPage, "Previous");
         paginationButtons.appendChild(previousButton);
-    } 
+    }
     else {
         const previousButton = createPaginationButton("disabled", "Previous");
         paginationButtons.appendChild(previousButton);
@@ -60,7 +60,7 @@ function displayPagination(previousPage, nextPage, totalPage) {
     if (nextPage) {
         const nextButton = createPaginationButton(nextPage, "Next");
         paginationButtons.appendChild(nextButton);
-    } 
+    }
     else {
         const nextButton = createPaginationButton("disabled", "Next");
         paginationButtons.appendChild(nextButton);
@@ -70,26 +70,24 @@ function displayPagination(previousPage, nextPage, totalPage) {
 
 
 
-function createPaginationButton(pageNumber, buttonText) {
-    const pageButton = document.createElement("li");
-    pageButton.classList.add("page-item",pageNumber);
-    // if(currentPage){
-    //         pageButton.classList.add("page-item", "active")
-            
-    //     }else{
-    //         pageButton.classList.add("page-item","disabled")
-    //     }
-    
-    const pageLink = document.createElement("a");
-    pageLink.classList.add("page-link");
-    pageLink.setAttribute("id", `page-link-${pageNumber}`);
-    pageLink.setAttribute("href", `#${pageNumber}`);
-    pageLink.setAttribute("onClick", `fetchPaginatedData(${buttonText}, defaultLimit)`)
-    pageLink.textContent = buttonText;
-    pageButton.appendChild(pageLink);
+    function createPaginationButton(pageNumber, buttonText) {
+        const pageButton = document.createElement("li");
+        pageButton.classList.add("page-item", pageNumber);
+        if (currentPage === buttonText) {
+            pageButton.classList.add("active");
+        }
 
-    return pageButton;
-}}
+        const pageLink = document.createElement("a");
+        pageLink.classList.add("page-link");
+        pageLink.setAttribute("id", `page-link-${pageNumber}`);
+        pageLink.setAttribute("href", `#${pageNumber}`);
+        pageLink.setAttribute("onClick", `fetchPaginatedData(${pageNumber}, defaultLimit)`)
+        pageLink.textContent = buttonText;
+        pageButton.appendChild(pageLink);
+
+        return pageButton;
+    }
+}
 
 
 

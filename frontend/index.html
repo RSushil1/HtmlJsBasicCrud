@@ -36,12 +36,13 @@
     </div>
     <div class="container">
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary mb-3 btn-sm " data-bs-toggle="modal"
+        <div class="row">
+        <button type="button" class="btn btn-primary mb-3 ms-3 btn-sm col-sm-1  " data-bs-toggle="modal"
             data-bs-target="#exampleModal">
             Create New
-        </button><input id="search-input1" onkeyup="searchFun()" class="form-control me-2 w-25" type="text"
+        </button><input id="search-input1" onkeyup="searchFun()" class="border border-primary form-control ms-3 mb-2 w-25 col-sm-5" type="text"
             placeholder="Search Below" aria-label="Search">
-
+        </div>
         <!-- Modal -->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -172,7 +173,7 @@
                 </div>
             </div>
         </div>
-        <div class="container viewport ">
+        <div class="container">
             <table id="myTable" class="table table-bordered table-success table-striped">
                 <thead class="table-dark">
                     <tr>
@@ -186,8 +187,8 @@
                 <tbody id="table_body">
                 </tbody>
             </table>
-            <div class="row">
-                <nav class="col" aria-label="...">
+            <div class="row ">
+                <nav class="col " aria-label="...">
                     <ul class="pagination" id="paginationButtons">
                     </ul>
                 </nav>
