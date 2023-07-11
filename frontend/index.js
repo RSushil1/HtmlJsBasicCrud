@@ -4,7 +4,7 @@ const defaultLimit = 10;
 fetchPaginatedData(defaultPage, defaultLimit);
 
 function fetchPaginatedData(page, limit) {
-    fetch(`http://localhost:3000/students?page=${page}&limit=${limit}`).then((data) => {
+    fetch(`http://localhost:8000/students?page=${page}&limit=${limit}`).then((data) => {
 
         return data.json();
     }).then((objectData) => {
@@ -108,7 +108,7 @@ function search(event) {
     event.preventDefault();
     let Name = document.getElementById("name").value;
     let name = Name.toUpperCase();
-    let U = `http://localhost:3000/students/name/${name}`
+    let U = `http://localhost:8000/students/name/${name}`
     fetch(U).then((res) => {
         res.json();
     }).then((data) => {
@@ -146,7 +146,7 @@ function handleSubmit(event) {
     let data = Object.fromEntries(formData);
     let jsonData = JSON.stringify(data);
 
-    fetch('http://localhost:3000/students', {
+    fetch('http://localhost:8000/students', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

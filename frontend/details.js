@@ -1,6 +1,6 @@
 
 let searchInput = localStorage.getItem("id");
-let apiUrl = `http://localhost:3000/students/${searchInput}`;
+let apiUrl = `http://localhost:8000/students/${searchInput}`;
 let cardData = "";
 
 fetch(apiUrl)
@@ -197,7 +197,7 @@ function handleDeleteSubmit(event) {
   event.preventDefault()
   const studentId = event.target.id;
 
-  fetch(`http://localhost:3000/students/${studentId}`, {
+  fetch(`http://localhost:8000/students/${studentId}`, {
     method: 'DELETE',
   })
     .then((res) => {
@@ -232,7 +232,7 @@ function handleEditSubmit(event) {
   const data = Object.fromEntries(formData);
   const jsonData = JSON.stringify(data);
 
-  fetch(`http://localhost:3000/students/${studentId}`, {
+  fetch(`http://localhost:8000/students/${studentId}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
