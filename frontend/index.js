@@ -9,7 +9,7 @@ function fetchPaginatedData(page, limit) {
         return data.json();
     }).then((objectData) => {
         displayStudents(objectData.students);
-        displayPagination(objectData.previousPage, objectData.nextPage, objectData.totalPage)
+        displayPagination(objectData.previousPage, objectData.nextPage, objectData.totalPage, objectData.totalStudents)
     })
 
     function displayStudents(students) {
@@ -34,14 +34,14 @@ function fetchPaginatedData(page, limit) {
 
 
 
-function displayPagination(previousPage, nextPage, totalPage) {
+function displayPagination(previousPage, nextPage, totalPage, totalStudents) {
     const paginationButtons = document.getElementById("paginationButtons");
     paginationButtons.innerHTML = "";
     const currentPage = ((Number(nextPage || (Number(previousPage) + 2)) + Number(previousPage || 0)) / 2)
     const totalPageDisplay = document.getElementById("pc");
     totalPageDisplay.innerHTML = `<h6>Page ${currentPage} of ${totalPage}</h6>`;
     const totalDocDisplay = document.getElementById("tDoc");
-    totalDocDisplay.innerHTML = `<h6>Total Page : ${totalPage}</h6>`;
+    totalDocDisplay.innerHTML = `<h6>Total Students : ${totalStudents}</h6>`;
 
     if (previousPage) {
         const previousButton = createPaginationButton(previousPage, "Previous");

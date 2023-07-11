@@ -43,6 +43,7 @@ module.exports.GetAllStudentsList = function (page, limit, db) {
                     }
 
                     results.totalPage = Math.ceil(totalCount / endIndex);
+                    results.totalStudents = totalCount;
                     return results;
                 }).catch((err) => {
                     console.error(err);
@@ -60,10 +61,12 @@ module.exports.studentById = function (id, db) {
         .findOne({ _id: id })
         .then((doc) => {
             return doc;
-        }).catch(() => {
-            console.error(error);
-            return error;
+        }).catch((err) => {
+            console.error(err);
+            results.error = err;
+            return results;
         })
+
 }
 
 // get student by name
@@ -72,10 +75,12 @@ module.exports.studentByName = function (firstName, db) {
         .findOne({ first_name: firstName })
         .then((doc) => {
             return doc;
-        }).catch(() => {
-            console.error(error);
-            return error;
+        }).catch((err) => {
+            console.error(err);
+            results.error = err;
+            return results;
         })
+
 }
 
 // Create Document
@@ -116,10 +121,12 @@ module.exports.createDoc = function (doc, db) {
         .insertOne(student)
         .then((result) => {
             return result;
-        }).catch(() => {
-            console.error(error);
-            return error;
+        }).catch((err) => {
+            console.error(err);
+            results.error = err;
+            return results;
         })
+
 }
 
 // Delete Document
@@ -129,10 +136,12 @@ module.exports.deleteDoc = function (id, db) {
             .deleteOne({ _id: id })
             .then((doc) => {
                 return doc;
-            }).catch(() => {
-                console.error(error);
-                return error;
+            }).catch((err) => {
+                console.error(err);
+                results.error = err;
+                return results;
             })
+
     } else {
         return error;
     }
@@ -160,10 +169,12 @@ module.exports.updateDoc = function (id,doc, db) {
             .updateOne({ _id: id }, { $set: updates })
             .then((doc) => {
                 return doc;
-            }).catch(() => {
-                console.error(error);
-                return error;
+            }).catch((err) => {
+                console.error(err);
+                results.error = err;
+                return results;
             })
+
     } else {
         return error;
     }
